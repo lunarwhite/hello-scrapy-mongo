@@ -86,3 +86,10 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+ITEM_PIPELINES = {'hello.pipelines.MongoDBPipeline': 300}
+
+MONGODB_HOST = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "hello"
+MONGODB_COLLECTION = "questions"
