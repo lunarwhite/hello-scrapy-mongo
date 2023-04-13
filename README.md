@@ -1,12 +1,14 @@
 # hello-scrapy-mongo
-A simple crawler demo for stackoverflow.com newest questions, using Python Scrapy. MongoDB as Pipeline.
 
-## 1 Setup envs
+A simple crawler demo for [stackoverflow.com](https://stackoverflow.com/) newest questions, using Python Scrapy. MongoDB as Pipeline.
 
-### 1.1 mongodb
+Explore more details in this [blog post](https://lunarwhite.notion.site/Sraping-Website-using-Scrapy-and-MongoDB-800f14544de14cf7bc684191e8052198).
+
+## Setup env
+
+### MongoDB
 
 - install
-
   ```shell
   # Import the public key used by the package management system
   wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
@@ -22,7 +24,6 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
   ```
 
 - run/stop
-
   ```shell
   # Start MongoDB
   sudo systemctl start mongod
@@ -40,53 +41,41 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
   mongosh
   ```
 
-### 1.2 python
+### Python
 
 - check version
-
   ```shell
   python3 -V
   ```
-
 - create virtual env
-
   ```shell
   python3 -m venv .venv
   source .venv/bin/activate
   
   # deactivate
   ```
-  
 - pkg: `scrapy`
-
   ```shell
   pip install scrapy
   ```
-
 - pkg: `pymongo`
-
   ```shell
   python3 -m pip install 'pymongo[srv]'
   ```
-
 - dependency
-
   ```shell
   pip freeze > requirements.txt
   ```
 
-## 2 Run demo
+## Run demo
 
-### 2.1 init project
+### Init project
 
 - start project
-
   ```shell
   scrapy startproject hello
   ```
-
-- project structure
-
+- project layout
   ```shell
   .
   ├── scrapy.cfg # config file
@@ -101,10 +90,9 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
           └── hello_spider.py
   ```
 
-### 2.2  define item
+### Define item
 
 - example
-
   ```python
   # items.py
   
@@ -116,16 +104,14 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
       pass
   ```
 
-### 2.3 make spider
+### Create spider
 
 - example
-
   ```python
   # hello_spider.py
   
   import scrapy
   from hello.items import HelloItem
-   
   
   class HelloSpider(scrapy.Spider):
       name = "hello"
@@ -144,10 +130,9 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
               yield item
   ```
 
-### 2.4 use pipeline
+### Use pipeline
 
 - import rules in setting.py
-
   ```python
   ITEM_PIPELINES = {'hello.pipelines.MongoDBPipeline': 300}
   
@@ -156,9 +141,7 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
   MONGODB_DB = "hello"
   MONGODB_COLLECTION = "questions"
   ```
-
 - example
-
   ```python
   # pipeline.py
   
@@ -188,17 +171,14 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
           return item
   ```
 
-### 2.5 deploy
+### Deploy
 
 - run crawler
-
   ```shell
   cd hello/
   scrapy crawl hello
   ```
-
 - show db file
-
   ```shell
   mongosh
   show dbs
@@ -208,16 +188,18 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
   db.questions.find().pretty()
   ```
 
-## 3 Misc
+## Misc
 
-### 3.1 stack
-- database: mongodb
-- lang/framework: python scrapy  
-### 3.2 references
+### Tool chain
+
+- database: MongoDB
+- lang/framework: Python Scrapy  
+
+### References
+
 - https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 - https://docs.mongodb.com/drivers/pymongo/
 - https://www.runoob.com/mongodb/mongodb-tutorial.html
-- https://docs.scrapy.org/en/latest/
 - https://docs.scrapy.org/en/latest/topics/settings.html
 - https://docs.scrapy.org/en/latest/topics/items.html
 - https://doc.scrapy.org/en/latest/topics/item-pipeline.html
