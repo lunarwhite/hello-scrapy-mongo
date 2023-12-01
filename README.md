@@ -210,9 +210,9 @@ A simple crawler demo for stackoverflow.com newest questions, using Python Scrap
 
 ## 3 Misc
 
-### 3.1 选择考量
-- 数据库 mongodb
-- 语言&框架 python scrapy  
+### 3.1 stack
+- database: mongodb
+- lang/framework: python scrapy  
 ### 3.2 references
 - https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 - https://docs.mongodb.com/drivers/pymongo/
