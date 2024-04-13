@@ -4,7 +4,7 @@ cffi==1.15.0
 constantly==15.1.0
 cryptography==42.0.4
 cssselect==1.1.0
-dnspython==2.1.0
+dnspython==2.6.1
 h2==3.2.0
 hpack==3.0.0
 hyperframe==5.2.0
