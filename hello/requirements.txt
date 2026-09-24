@@ -6,7 +6,7 @@ cryptography==50.0.0
 cssselect==1.1.0
 dnspython==2.6.1
 h2==4.4.1
-hpack==3.0.0
+hpack==4.2.0
 hyperframe==5.2.0
 hyperlink==21.0.0
 idna==3.15
